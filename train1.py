@@ -8,5 +8,5 @@ model = svm.SVC()
 
 model.fit(X, y)
 
-with open('model1.pkl', 'wb') as fout:
+with open('model/model1.pkl', 'wb') as fout:
         pickle.dump(model, fout)

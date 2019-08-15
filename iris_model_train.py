@@ -2,7 +2,7 @@ import csv
 from sklearn import svm
 import pickle
 
-with open('iris.csv') as fin:
+with open("iris_train.csv") as fin:
     reader = csv.reader(fin)
     header = next(reader)
     X = []
@@ -11,8 +11,9 @@ with open('iris.csv') as fin:
         X.append([float(v) for v in d[:-1]])
         y.append(d[-1])
 
-with open('iris-model2.pkl', 'rb') as fin:
-        model = pickle.load(fin)
+model = svm.SVC()
 
-for y_true, y_pred in zip(y, model.predict(X)):
-    print(y_true, y_pred)
+model.fit(X, y)
+
+with open('model/iris_model_train.pkl', 'wb') as fout:
+        pickle.dump(model, fout)
